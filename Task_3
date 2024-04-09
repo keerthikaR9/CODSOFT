@@ -1,111 +1,120 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Calculator</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      background-color: #000;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Calculator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+        }
 
-    .calculator {
-      max-width: 300px;
-      margin: 50px auto;
-      padding: 20px;
-      background-color: #222;
-      border-radius: 10px;
-    }
+        .calculator-container {
+            max-width: 300px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #e0e0e0;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
 
-    #display {
-      width: calc(100% - 20px);
-      margin-bottom: 10px;
-      padding: 10px;
-      font-size: 24px;
-      border: none;
-      border-radius: 5px;
-      background-color: #333;
-      color: #fff;
-    }
+        .display {
+            width: calc(100% - 20px);
+            margin-bottom: 10px;
+            padding: 10px;
+            font-size: 24px;
+            border: none;
+            border-radius: 5px;
+            background-color: #fff;
+            color: #333;
+        }
 
-    .buttons {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 10px;
-    }
+        .buttons {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+        }
 
-    button {
-      padding: 10px;
-      font-size: 20px;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-    }
+        button {
+            padding: 20px;
+            font-size: 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
 
-    .operator {
-      background-color: #ff9800;
-      color: #fff;
-    }
+        .operator {
+            background-color: #ff9800;
+            color: #fff;
+        }
 
-    .number {
-      background-color: #fff;
-      color: #000;
-    }
-  </style>
+        .number {
+            background-color: #4caf50;
+            color: #fff;
+        }
+
+        button:hover {
+            background-color: #ddd;
+        }
+    </style>
 </head>
+
 <body>
-  <div class="calculator">
-    <input type="text" id="display" readonly>
-    <div class="buttons">
-      <button class="operator" id="add">+</button>
-      <button class="operator" id="subtract">-</button>
-      <button class="operator" id="multiply">*</button>
-      <button class="operator" id="divide">/</button>
-      <button class="number" id="seven">7</button>
-      <button class="number" id="eight">8</button>
-      <button class="number" id="nine">9</button>
-      <button class="number" id="four">4</button>
-      <button class="number" id="five">5</button>
-      <button class="number" id="six">6</button>
-      <button class="number" id="one">1</button>
-      <button class="number" id="two">2</button>
-      <button class="number" id="three">3</button>
-      <button class="number" id="zero">0</button>
-      <button id="clear">C</button>
-      <button id="equals">=</button>
+    <div class="calculator-container">
+        <input type="text" class="display" readonly>
+        <div class="buttons">
+            <button class="number" id="seven">7</button>
+            <button class="number" id="eight">8</button>
+            <button class="number" id="nine">9</button>
+            <button class="operator" id="divide">/</button>
+            <button class="number" id="four">4</button>
+            <button class="number" id="five">5</button>
+            <button class="number" id="six">6</button>
+            <button class="operator" id="multiply">*</button>
+            <button class="number" id="one">1</button>
+            <button class="number" id="two">2</button>
+            <button class="number" id="three">3</button>
+            <button class="operator" id="subtract">-</button>
+            <button class="number" id="zero">0</button>
+            <button id="clear">C</button>
+            <button class="operator" id="add">+</button>
+            <button id="equals">=</button>
+        </div>
     </div>
-  </div>
 
-  <script>
-    document.addEventListener('DOMContentLoaded', function() {
-      const display = document.getElementById('display');
-      const buttons = document.querySelectorAll('button');
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const display = document.querySelector('.display');
+            const buttons = document.querySelectorAll('button');
 
-      let expression = '';
+            let expression = '';
 
-      buttons.forEach(button => {
-        button.addEventListener('click', function() {
-          const value = this.textContent;
+            buttons.forEach(button => {
+                button.addEventListener('click', function () {
+                    const value = this.textContent;
 
-          if (value === 'C') {
-            expression = '';
-            display.value = '';
-          } else if (value === '=') {
-            try {
-              display.value = eval(expression);
-            } catch (error) {
-              display.value = 'Error';
-            }
-          } else {
-            expression += value;
-            display.value = expression;
-          }
+                    if (value === 'C') {
+                        expression = '';
+                        display.value = '';
+                    } else if (value === '=') {
+                        try {
+                            display.value = eval(expression);
+                        } catch (error) {
+                            display.value = 'Error';
+                        }
+                    } else {
+                        expression += value;
+                        display.value = expression;
+                    }
+                });
+            });
         });
-      });
-    });
-  </script>
+    </script>
 </body>
+
 </html>
 
 
